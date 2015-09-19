@@ -1,0 +1,54 @@
+<<< >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Saitek X52 Flight Control System has:
+ 9 sliders
+ 32 buttons
+ 0 sticks
+
+<<< available Saitek X52 Flight Control System sliders: >>>
+
+     0: Eje Y absolute
+     1: Eje X absolute
+     2: Rotación Z absolute
+     3: Control deslizante absolute
+     4: Rotación Y absolute
+     5: Rotación X absolute
+     6: Eje Z absolute
+     7: Mover arriba o abajo absolute
+     8: Mover derecha o izquierda absolute
+
+<<< >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+<<< available Saitek X52 Flight Control System buttons: >>>
+
+     0: Botón 0
+     1: Botón 1
+     2: Botón 2
+     3: Botón 3
+     4: Botón 4
+     5: Botón 5
+     6: Botón 6
+     7: Botón 7
+     8: Botón 8
+     9: Botón 9
+     10: Botón 10
+     11: Botón 11
+     12: Botón 12
+     13: Botón 13
+     14: Botón 14
+     15: Botón 15
+     16: Botón 16
+     17: Botón 17
+     18: Botón 18
+     19: Botón 19
+     20: Botón 20
+     21: Botón 21
+     22: Botón 22
+     23: Botón 23
+     24: Botón 24
+     25: Botón 25
+     26: Botón 26
+     27: Botón 27
+     28: Botón 28
+     29: Botón 29
+     30: Botón 30
+     31: cooliehat: Botón del control

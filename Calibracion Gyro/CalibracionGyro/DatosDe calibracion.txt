@@ -1,0 +1,16 @@
+const float GyroThetaX = {89.994122, -4.148011}; 
+const float GyroThetaY = {-0.004307, 0.336473}; 
+const float GyroThetaZ = {-0.997588, -0.302862};
+
+const float GyroThetaX[3] = {89.996471, -3.890942, -0.154080}; 
+const float GyroThetaY[3] = {0.009294, 0.265952, 0.116798}; 
+const float GyroThetaZ[3] = {-1.000986, -0.234159, -0.106226}; 
+
+const float GyroThetaX[3] = {89.996380, -3.932529, -0.109510}; 
+const float GyroThetaY[3] = {0.007717, 0.171487, 0.151516}; 
+const float GyroThetaZ[3] = {-1.001054, -0.119866, -0.242386}; 
+
+// X = [temp3, tempgyro3, temp3.^2, tempgyro3.^2, temp3 .* tempgyro3 ]; 
+const float GyroThetaX[6] = {4.00339958, -1.31932865, 0.61233034, -0.01196691, 0.02576379, 0.02475689}; 
+const float GyroThetaY[6] = {7.46778675, -0.01827899, 0.02235432, -0.00106753, -0.00338331, 0.00589385}; 
+const float GyroThetaZ[6] = {-7.19971846, 0.02150804, -0.02527964, 0.00090877, 0.00216110, -0.00472952}; 

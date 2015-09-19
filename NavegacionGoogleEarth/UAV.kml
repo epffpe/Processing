@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+  <name>KmlFile</name>
+  <Style id="transBluePoly">
+      <LineStyle>
+        <width>1.5</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>7dff0000</color>
+      </PolyStyle>
+    </Style>
+  <Style id="default">
+  </Style>
+  <Style id="default0">
+  </Style>
+  <StyleMap id="default1">
+    <Pair>
+      <key>normal</key>
+      <styleUrl>#default</styleUrl>
+    </Pair>
+    <Pair>
+      <key>highlight</key>
+      <styleUrl>#default0</styleUrl>
+    </Pair>
+  </StyleMap>
+  <Placemark>
+    <name>Model</name>
+    <LookAt>
+      <altitudeMode>absolute</altitudeMode>
+      <longitude>-15.3922</longitude>
+      <latitude>27.9190</latitude>
+      <altitude>20.4694</altitude>
+      <heading>16.6530</heading>
+      <tilt>90.5727</tilt>
+      <range>0</range>
+    </LookAt>
+    <styleUrl>#default1</styleUrl>
+    <Model id="model_2">
+      <altitudeMode>absolute</altitudeMode>
+      <Location>
+        <longitude>-15.3922</longitude>
+        <latitude>27.9190</latitude>
+        <altitude>20.4694</altitude>
+      </Location>
+      <Orientation>
+        <heading>16.6530</heading>
+        <tilt>-0.572682</tilt>
+        <roll>-1.15614</roll>
+      </Orientation>
+      <Scale>
+        <x>70.0000</x>
+        <y>70.0000</y>
+        <z>70.0000</z>
+      </Scale>
+      <Link>
+        <href>C:\Users\epf\Dropbox\Proyecto\Google Earth\Modelo UAV\UAV.dae</href>
+      </Link>
+      <ResourceMap>
+      </ResourceMap>
+    </Model>
+  </Placemark>
+</Document>
+</kml>
+

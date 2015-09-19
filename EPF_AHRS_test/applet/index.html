@@ -1,0 +1,400 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <!-- charset must remain utf-8 to be handled properly by Processing -->
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    
+    <title>EPF_AHRS_test : Built with Processing</title>
+    
+    <style type="text/css">
+      /* <![CDATA[ */
+	
+		body {
+  		  margin: 60px 0px 0px 55px;
+		  font-family: verdana, geneva, arial, helvetica, sans-serif; 
+		  font-size: 11px; 
+		  background-color: #ddddcc; 
+		  text-decoration: none; 
+		  font-weight: normal; 
+		  line-height: normal; 
+		}
+		 
+		a          { color: #3399cc; }
+		a:link     { color: #3399cc; text-decoration: underline; }
+		a:visited  { color: #3399cc; text-decoration: underline; }
+		a:active   { color: #3399cc; text-decoration: underline; }
+		a:hover    { color: #3399cc; text-decoration: underline; }
+	
+		/* ]]> */
+    </style>
+    
+  </head>
+  <body>
+    <div id="content">
+      
+      <div id="EPF_AHRS_test_container">
+	
+	<!--[if !IE]> -->
+	<object classid="java:org.jdesktop.applet.util.JNLPAppletLauncher" 
+            	type="application/x-java-applet"
+            	archive="EPF_AHRS_test.jar,opengl.jar,RXTXcomm.jar,serial.jar,core.jar,http://download.java.net/media/applet-launcher/applet-launcher.jar,http://download.java.net/media/jogl/builds/archive/jsr-231-webstart-current/jogl.jar,http://download.java.net/media/gluegen/webstart/gluegen-rt.jar"
+            	width="640" height="480"
+            	standby="Loading Processing software..." >
+          
+	  <param name="archive" value="EPF_AHRS_test.jar,opengl.jar,RXTXcomm.jar,serial.jar,core.jar,http://download.java.net/media/applet-launcher/applet-launcher.jar,http://download.java.net/media/jogl/builds/archive/jsr-231-webstart-current/jogl.jar,http://download.java.net/media/gluegen/webstart/gluegen-rt.jar" />
+	  <param name="jnlpNumExtensions" value="1">
+	  <param name="jnlpExtension1" value="http://download.java.net/media/jogl/builds/archive/jsr-231-webstart-current/jogl.jnlp">
+
+	  <param name="mayscript" value="true" />
+	  <param name="scriptable" value="true" />
+	  
+	  <param name="image" value="loading.gif" />
+	  <param name="boxmessage" value="Loading Processing software..." />
+	  <param name="boxbgcolor" value="#FFFFFF" />
+	  <param name="progressbar" value="true" />
+	  <!--<param name="noddraw.check" value="true">-->
+	  
+	  <param name="subapplet.classname" value="EPF_AHRS_test" /> 
+	  <param name="subapplet.displayname" value="EPF_AHRS_test" />
+	  
+	  <param name="test_string" value="outer" />
+	  <!--<![endif]-->
+	  
+	  <object classid="clsid:CAFEEFAC-0016-0000-FFFF-ABCDEFFEDCBA" 
+		  width="640" height="480"
+		  standby="Loading Processing software..."  >
+
+	    <param name="code" 
+		   value="org.jdesktop.applet.util.JNLPAppletLauncher" />
+	    <param name="archive" value="EPF_AHRS_test.jar,opengl.jar,RXTXcomm.jar,serial.jar,core.jar,http://download.java.net/media/applet-launcher/applet-launcher.jar,http://download.java.net/media/jogl/builds/archive/jsr-231-webstart-current/jogl.jar,http://download.java.net/media/gluegen/webstart/gluegen-rt.jar" />
+	    <param name="jnlpNumExtensions" value="1">
+	    <param name="jnlpExtension1" value="http://download.java.net/media/jogl/builds/archive/jsr-231-webstart-current/jogl.jnlp">
+	    
+	    <param name="mayscript" value="true" />
+	    <param name="scriptable" value="true" />
+	    
+	    <param name="image" value="loading.gif" />
+	    <param name="boxmessage" value="Loading Processing software..." />
+	    <param name="boxbgcolor" value="#FFFFFF" />
+	    <param name="progressbar" value="true" />
+	    <!--<param name="noddraw.check" value="true">-->
+
+	    <param name="subapplet.classname" value="EPF_AHRS_test" /> 
+	    <param name="subapplet.displayname" value="EPF_AHRS_test" />
+	    
+	    <param name="test_string" value="inner" />
+	    
+	    <p>
+	      <strong>
+		This browser does not have a Java Plug-in.
+		<br />
+		<a href="http://www.java.com/getjava" title="Download Java Plug-in">
+		  Get the latest Java Plug-in here.
+		</a>
+	      </strong>
+	    </p>
+	    
+	  </object>
+	  
+	  <!--[if !IE]> -->
+	</object>
+	<!--<![endif]-->
+	
+      </div>
+      
+      <p>
+	
+ Test Sketch for Razor AHRS v1.4.1
+ 9 Degree of Measurement Attitude and Heading Reference System
+ for Sparkfun "9DOF Razor IMU" and "9DOF Sensor Stick"
+
+ Released under GNU GPL (General Public License) v3.0
+ Copyright (C) 2011-2012 Quality & Usability Lab, Deutsche Telekom Laboratories, TU Berlin
+ Written by Peter Bartz (peter-bartz@gmx.de)
+
+ Infos, updates, bug reports and feedback:
+     http://dev.qu.tu-berlin.de/projects/sf-razor-9dof-ahrs
+/
+
+/*
+  NOTE: There seems to be a bug with the serial library in the latest Processing
+  versions 1.5 and 1.5.1: "WARNING: RXTX Version mismatch ...". The previous version
+  1.2.1 works fine and is still available on the web.
+/
+
+import processing.opengl.*;
+import processing.serial.*;
+
+// IF THE SKETCH CRASHES OR HANGS ON STARTUP, MAKE SURE YOU ARE USING THE RIGHT SERIAL PORT:
+// 1. Have a look at the Processing console output of this sketch.
+// 2. Look for the serial port list and find the port you need (it's the same as in Arduino).
+// 3. Set your port number here:
+final static int SERIAL_PORT_NUM = 0;
+// 4. Try again.
+
+
+final static int SERIAL_PORT_BAUD_RATE = 115200;
+
+float yaw = 0.0f;
+float pitch = 0.0f;
+float roll = 0.0f;
+float yawOffset = 0.0f;
+
+PFont font;
+Serial serial;
+
+boolean synched = false;
+
+void drawArrow(float headWidthFactor, float headLengthFactor) {
+  float headWidth = headWidthFactor * 200.0f;
+  float headLength = headLengthFactor * 200.0f;
+  
+  pushMatrix();
+  
+  // Draw base
+  translate(0, 0, -100);
+  box(100, 100, 200);
+  
+  // Draw pointer
+  translate(-headWidth/2, -50, -100);
+  beginShape(QUAD_STRIP);
+    vertex(0, 0 ,0);
+    vertex(0, 100, 0);
+    vertex(headWidth, 0 ,0);
+    vertex(headWidth, 100, 0);
+    vertex(headWidth/2, 0, -headLength);
+    vertex(headWidth/2, 100, -headLength);
+    vertex(0, 0 ,0);
+    vertex(0, 100, 0);
+  endShape();
+  beginShape(TRIANGLES);
+    vertex(0, 0, 0);
+    vertex(headWidth, 0, 0);
+    vertex(headWidth/2, 0, -headLength);
+    vertex(0, 100, 0);
+    vertex(headWidth, 100, 0);
+    vertex(headWidth/2, 100, -headLength);
+  endShape();
+  
+  popMatrix();
+}
+
+void drawAlas(){
+  // Ala principal
+  pushMatrix();
+  translate(0, -30, -25);
+  box(600, 10, 100);
+  popMatrix();
+  
+  pushMatrix();
+  translate(0, -25, -75);
+  beginShape(QUADS);
+    vertex(-300, 0 ,0);
+    vertex(-300, -10, 0);
+    vertex(0, -10 ,-60);
+    vertex(0, 0, -60);
+    vertex(300, 0, 0);
+    vertex(300, -10, 0);
+    vertex(0, -10 ,-60);
+    vertex(0, 0, -60);
+  endShape();
+  beginShape(TRIANGLES);
+    vertex(-300, 0, 0);
+    vertex(300, 0, 0);
+    vertex(0, 0, -60);
+    vertex(-300, -10, 0);
+    vertex(300, -10, 0);
+    vertex(0, -10, -60);
+  endShape();
+  popMatrix(); 
+  
+  //Estabilizador horizontal
+  pushMatrix();
+  translate(0, -30, 180);
+  box(200, 10, 40);
+  popMatrix();
+  
+  pushMatrix();
+  translate(0, -25, 160);
+  beginShape(QUADS);
+    vertex(-100, 0 ,0);
+    vertex(-100, -10, 0);
+    vertex(0, -10 ,-30);
+    vertex(0, 0, -30);
+    vertex(100, 0, 0);
+    vertex(100, -10, 0);
+    vertex(0, -10 ,-30);
+    vertex(0, 0, -30);
+  endShape();
+  beginShape(TRIANGLES);
+    vertex(-100, 0, 0);
+    vertex(100, 0, 0);
+    vertex(0, 0, -30);
+    vertex(-100, -10, 0);
+    vertex(100, -10, 0);
+    vertex(0, -10, -30);
+  endShape();
+  popMatrix(); 
+  
+  //Deriva, estabilizador vertical
+  pushMatrix();
+  fill(0, 255, 0);
+  translate(0, -75, 180);
+  rotateZ(radians(-90.0f));  
+  box(100, 10, 39);
+  popMatrix();
+  
+  pushMatrix();
+  fill(0, 255, 0);
+  translate(0, -25, 160);
+  rotateZ(radians(-90.0f)); 
+  beginShape(QUADS);
+    vertex(0, -5 ,0);
+    vertex(0, 5, 0);
+    vertex(100, 5 ,0);
+    vertex(100, -5, 0);
+    vertex(100, -5, 0);
+    vertex(0, -5, -70);
+    vertex(0, 5 ,-70);
+    vertex(100, 5, 0);
+  endShape();
+  beginShape(TRIANGLES);
+    vertex(0, -5, 0);
+    vertex(100, -5, 0);
+    vertex(0, -5, -70);
+    vertex(0, 5, 0);
+    vertex(100, 5, 0);
+    vertex(0, 5, -70);
+  endShape();
+  popMatrix(); 
+
+}
+
+void printEPF(){
+  pushMatrix();
+  fill(0, 255, 0);
+  translate(0, -30, -40);
+  rotateX(radians(90.0f));
+  scale(4.0);
+  textAlign(CENTER);
+  //fill(0, 255, 0);
+  text("epf",0,0,2);
+  popMatrix();
+  
+  pushMatrix();
+  fill(0, 255, 0);
+  translate(180, -30, -10);
+  rotateX(radians(-90.0f));
+  rotateZ(radians(180.0f));
+  scale(4.0);
+  textAlign(CENTER);
+  //fill(0, 255, 0);
+  text("epf",0,0,2);
+  popMatrix();
+  
+  pushMatrix();
+  fill(0, 255, 0);
+  translate(-150, -30, -20);
+  rotateX(radians(-90.0f));
+  rotateZ(radians(180.0f));
+  scale(2.0);
+  textAlign(CENTER);
+  //fill(0, 255, 0);
+  text("Supersonic",0,0,5);
+  popMatrix();
+}
+
+void drawBoard() {
+  pushMatrix();
+
+  rotateY(-radians(yaw - yawOffset));
+  rotateX(-radians(pitch));
+  rotateZ(radians(roll));
+  
+  //stroke(255);
+  //line(-300,0,0,300,0,0);
+  //noStroke(); 
+  //rotateX(mouseY/180.0f);
+  // Board body
+  fill(0, 0, 255);
+  box(50, 50, 400);
+  
+  drawAlas();
+  printEPF();
+  // Forward-arrow
+  pushMatrix();
+  translate(0, 0, -200);
+  scale(0.5f, 0.2f, 0.25f);
+  fill(0, 255, 0);
+  drawArrow(1.0f, 2.0f);
+  popMatrix();
+    
+  popMatrix();
+}
+
+// Skip incoming serial stream data until token is found
+boolean readToken(Serial serial, String token) {
+  // Wait until enough bytes are available
+  if (serial.available() < token.length())
+    return false;
+  
+  // Check if incoming bytes match token
+  for (int i = 0; i < token.length(); i++) {
+    if (serial.read() != token.charAt(i))
+      return false;
+  }
+  
+  return true;
+}
+
+// Global setup
+void setup() {
+  // Setup graphics
+  size(640, 480, OPENGL);
+  smooth();
+  noStroke();
+  frameRate(50);
+  
+  // Load font
+  font = loadFont("Univers-66.vlw");
+  textFont(font);
+  
+  // Setup serial port I/O
+  println("AVAILABLE SERIAL PORTS:");
+  println(Serial.list());
+  String portName = Serial.list()[SERIAL_PORT_NUM];
+  println();
+  println("HAVE A LOOK AT THE LIST ABOVE AND SET THE RIGHT SERIAL PORT NUMBER IN THE CODE!");
+  println("  -> Using port " + SERIAL_PORT_NUM + ": " + portName);
+  serial = new Serial(this, portName, SERIAL_PORT_BAUD_RATE);
+}
+
+void setupRazor() {
+  println("Trying to setup and synch Razor...");
+  
+  // On Mac OSX and Linux (Windows too?) the board will do a reset when we connect, which is really bad.
+  // See "Automatic (Software) Reset" on http://www.arduino.cc/en/Main/ArduinoBoardProMini
+  // So we have to wait until the bootloader is finished and the Razor firmware can receive commands.
+  // To prevent this, disconnect/cut/unplug the DTR line going to the board. This also has the advantage,
+  // that the angles you receive are stable right from the beginning. 
+  delay(1000);  // 3 seconds should be enough
+  /*
+  // Set Razor output parameters
+  serial.write("#ob");  // Turn on binary output
+  serial.write("#o1");  // Turn on continuous streaming output
+  serial.write("#oe0"); // Disable error message output
+  
+
+      </p>
+      
+      <p>
+	Source code: <a href="EPF_AHRS_test.pde">EPF_AHRS_test</a> 
+      </p>
+      
+      <p>
+	Built with <a href="http://processing.org" title="Processing.org">Processing</a>
+      </p>
+    </div>
+  </body>
+</html>
